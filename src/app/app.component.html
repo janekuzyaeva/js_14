@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row col-12 mt-5">
+        <input type="text" class="form-control" id="search" placeholder="Search" [(ngModel)]="search">
+    </div>
+</div>
+
+<div class="container mt-3">
+    <div class="row">
+        <p class="col-1" style="text-align: center;"><strong>ID</strong></p>
+        <p class="col-2 mr-2" style="text-align: center;"><strong>First Name</strong></p>
+        <p class="col-2 mr-2" style="text-align: center;"><strong>Second Name</strong></p>
+        <p class="col-3 mr-2" style="text-align: center;"><strong>Phone</strong></p>
+    </div>
+</div>
+<div *ngIf="!loading; else loadingBlock">
+    <app-item
+        *ngFor="let human of people | filter : search"
+        [p]="human"
+        (onDelete)="deletePeople($event)"
+        (onSave)="savePeople($event)"
+    ></app-item>
+</div>
+<ng-template #loadingBlock>
+    <br>
+    <h1 style="text-align: center;">Loading...</h1>
+</ng-template>
+
+<div class="container">
+    <br>
+    <hr>
+    <br>
+</div>
+<app-form
+    (onAdd)="updatePeople($event)"
+></app-form>

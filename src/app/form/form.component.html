@@ -1,0 +1,19 @@
+<div class="container">
+    <h3>Add</h3>
+        <form [formGroup]="form" (ngSubmit)="submit" class="row">
+            <div class="col-3 mr-2">
+                <input [ngClass]="{'is-invalid' : (form.get('name').invalid && form.get('name').touched), 'is-valid' : !form.get('name').invalid && form.get('name').touched}" type="text" class="form-control col-12" placeholder="Jane" formControlName="name">
+            </div>
+            <div class="col-3 mr-2">
+                <input type="text" [ngClass]="{'is-invalid' : (form.get('surname').invalid && form.get('surname').touched), 'is-valid' : !form.get('surname').invalid && form.get('surname').touched}" class="form-control col-12" id="surname" placeholder="Kuzyaeva" formControlName="surname">
+            </div>
+            <div class="col-3 mr-2">
+                <input type="tel" class="form-control col-12" [ngClass]="{'is-invalid' : (form.get('telephone').invalid && form.get('telephone').touched), 'is-valid' : !form.get('telephone').invalid && form.get('telephone').touched}" id="telephone" placeholder="8 (987) 654 3210" formControlName="telephone" [textMask]="{mask: mask}" [(ngModel)]="myModel">
+            </div>
+            <button type="submit" class="btn btn-success col-2" (click)="submit()" [disabled]="form.invalid">Add</button>
+        </form>
+</div>
+
+
+
+

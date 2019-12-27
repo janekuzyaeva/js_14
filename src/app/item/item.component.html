@@ -1,0 +1,24 @@
+<div class="container" *ngIf="!edit">
+        <div class="row mb-2">
+            <p class="col-1" style="text-align: center;">{{p.id}}</p>
+            <p class="col-2 mr-2" style="text-align: center;">{{p.name}}</p>
+            <p class="col-2 mr-2" style="text-align: center;">{{p.surname}}</p>
+            <p class="col-3 mr-2" style="text-align: center;">{{p.telephone}}</p>
+            <button type="button" class="btn btn-dark col-2 mr-3" (click)="editPeople(p)">Edit</button>
+            <button type="button" class="btn btn-danger col-1" (click)="deletePeople(p.id)">Delete</button>
+        </div>
+</div>
+
+
+<div class="container" *ngIf="edit">
+        <form [formGroup]="form" (ngSubmit)="submit" class="mb-2 row">
+            <p class="col-1" style="text-align: center;">{{p.id}}</p>
+            <input [ngClass]="{'is-invalid' : (form.get('name').invalid), 'is-valid' : !form.get('name').invalid }" type="text" class="form-control col-2 mr-2" id="name" aria-describedby="emailHelp" placeholder="Jane" formControlName="name" #name>
+            <input [ngClass]="{'is-invalid' : (form.get('surname').invalid), 'is-valid' : !form.get('surname').invalid}" type="text" class="form-control col-2 mr-2" id="surname" placeholder="Kuzyaeva" formControlName="surname">
+            <input type="text" class="form-control col-3 mr-2" id="telephone" placeholder="8 (987) 654 3210" [ngClass]="{'is-invalid' : (form.get('telephone').invalid), 'is-valid' : !form.get('telephone').invalid}" id="telephone" placeholder="Введите номер телефона" formControlName="telephone" formControlName="telephone" [textMask]="{mask: mask}" [(ngModel)]="myModel">
+            <button type="button" class="btn btn-success col-2 mr-3" (click)="savePeople(p.id)" [disabled]="form.invalid">Save</button>
+            <button type="button" class="btn btn-danger col-1" disabled>Delete</button>
+        </form>
+</div>
+
+
